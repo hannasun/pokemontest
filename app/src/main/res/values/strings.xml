@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">PokemonTest</string>
+    <string name="app_name">Pokémon Search</string>
+    <string name="splash_welcome">Welcome</string>
+    <string name="splash_name">Pokémon Search</string>
+    <string name="home_search_hint">Search Pokémon species</string>
+    <string name="home_loading_pokemon">Loading…</string>
+    <string name="home_list_item_pokmons_in_species">Pokémon in species:</string>
+
 </resources>
