@@ -69,8 +69,6 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     implementation(libs.navigation.compose)
     implementation(libs.apollo.runtime)
-    implementation(libs.coil.compose)
-    implementation(libs.coil.gif)
     implementation(libs.splash)
     implementation(libs.paging.runtime)
     implementation(libs.paging.compose)

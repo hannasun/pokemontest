@@ -5,5 +5,6 @@
     <string name="home_search_hint">Search Pokémon species</string>
     <string name="home_loading_pokemon">Loading…</string>
     <string name="home_list_item_pokmons_in_species">Pokémon in species:</string>
+    <string name="detail_capture_rate">Capture rate: %1$s</string>
 
 </resources>
