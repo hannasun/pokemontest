@@ -69,7 +69,6 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     implementation(libs.navigation.compose)
     implementation(libs.apollo.runtime)
-    implementation(libs.splash)
     implementation(libs.paging.runtime)
     implementation(libs.paging.compose)
     implementation(libs.androidx.appcompat)
