@@ -7,6 +7,12 @@ plugins {
     alias(libs.plugins.apollo)
 }
 
+configurations.all {
+    resolutionStrategy {
+        force("org.jetbrains.kotlin:kotlin-stdlib:2.0.21")
+    }
+}
+
 android {
     namespace = "com.sunday.pokemontest"
     compileSdk {
@@ -73,7 +79,14 @@ dependencies {
     implementation(libs.paging.compose)
     implementation(libs.androidx.appcompat)
 
+    //Unit test
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
+    testImplementation(libs.core.testing)
+    testImplementation(libs.paging.testing)
+    testImplementation(libs.kotlinx.coroutines.test)
+
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.espresso.core)
