@@ -85,7 +85,9 @@ fun DetailScreen(
                         state.message, Modifier
                             .align(Alignment.Center)
                             .padding(16.dp)
-                    )
+                    ) {
+                        viewModel.retry()
+                    }
                 }
 
                 is DetailUiState.Success -> {

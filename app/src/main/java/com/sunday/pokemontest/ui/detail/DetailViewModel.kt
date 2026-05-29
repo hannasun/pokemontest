@@ -35,13 +35,17 @@ class DetailViewModel @Inject constructor(
             _uiState.value = DetailUiState.Loading
             repository.getSpeciesDetail(speciesId).fold(
                 onSuccess = { species ->
-                _uiState.value = if (species != null)
-                    DetailUiState.Success(species)
-                else
-                    DetailUiState.Error("Species Not Found")
-            }, onFailure = {
-                _uiState.value = DetailUiState.Error(it.message ?: "Unknown Error")
-            })
+                    _uiState.value = if (species != null)
+                        DetailUiState.Success(species)
+                    else
+                        DetailUiState.Error("Species Not Found")
+                }, onFailure = {
+                    _uiState.value = DetailUiState.Error(it.message ?: "Unknown Error")
+                })
         }
+    }
+
+    fun retry() {
+        loadDetail()
     }
 }

@@ -31,6 +31,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -96,45 +97,63 @@ fun HomeScreen(
             )
             //Loading or Error or List
             Box(modifier = Modifier.fillMaxSize()) {
-                when {
-                    lazyItems.loadState.refresh is LoadState.Loading -> {
+                when (lazyItems.loadState.refresh) {
+                    is LoadState.Loading -> {
                         LoadingIndicator(modifier = Modifier.align(Alignment.Center))
                     }
 
-                    lazyItems.loadState.refresh is LoadState.Error -> {
+                    is LoadState.Error -> {
                         val e = (lazyItems.loadState.refresh as LoadState.Error).error
                         PokemonLoadingErrorText(
-                            error = e.message ?: "Unknow Error", Modifier
+                            error = e.message ?: stringResource(R.string.loading_unknow_error),
+                            modifier = Modifier
                                 .align(Alignment.Center)
                                 .padding(16.dp)
-                        )
+                        ) {
+                            lazyItems.retry()
+                        }
                     }
 
                     else -> {
-                        LazyColumn(
-                            contentPadding = PaddingValues(
-                                horizontal = 14.dp, vertical = 8.dp
-                            ), verticalArrangement = Arrangement.spacedBy(10.dp)
-                        ) {
-                            items(
-                                count = lazyItems.itemCount,
-                                key = lazyItems.itemKey { it.id }) { idx ->
-                                lazyItems[idx]?.let { species ->
-                                    SpeciesCard(
-                                        species = species,
-                                        onClick = { onSpeciesClicked(species.id) })
-                                }
+                        if (lazyItems.itemCount == 0) {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.search_not_found),
+                                    textAlign = TextAlign.Center,
+                                    color = PokemonBlue,
+                                    fontSize = 16.sp,
+                                )
                             }
-                            //Append loading indicator
-                            if (lazyItems.loadState.append is LoadState.Loading) {
-                                item {
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(14.dp),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        PokemonCircularProgressIndicator()
+                        } else {
+                            LazyColumn(
+                                contentPadding = PaddingValues(
+                                    horizontal = 14.dp, vertical = 8.dp
+                                ), verticalArrangement = Arrangement.spacedBy(10.dp)
+                            ) {
+                                items(
+                                    count = lazyItems.itemCount,
+                                    key = lazyItems.itemKey { it.id }) { idx ->
+                                    lazyItems[idx]?.let { species ->
+                                        SpeciesCard(
+                                            species = species,
+                                            onClick = { onSpeciesClicked(species.id) })
+                                    }
+                                }
+                                //Append loading indicator
+                                if (lazyItems.loadState.append is LoadState.Loading) {
+                                    item {
+                                        Box(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(14.dp),
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            PokemonCircularProgressIndicator()
+                                        }
                                     }
                                 }
                             }
