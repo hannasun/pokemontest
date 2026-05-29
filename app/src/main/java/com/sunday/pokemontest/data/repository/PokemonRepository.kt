@@ -17,7 +17,7 @@ class PokemonRepository @Inject constructor(
         limit: Int,
         offset: Int
     ): Result<Pair<List<PokemonSpecies>, Int>> = runCatching {
-        val searchTerm = "%${query.trim()}%"
+        val searchTerm = "${query.trim().lowercase()}%"
         val response = apolloClient
             .query(
                 SearchPokemonSpeciesQuery(
