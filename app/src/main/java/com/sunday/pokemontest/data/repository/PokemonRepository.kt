@@ -3,6 +3,7 @@ package com.sunday.pokemontest.data.repository
 import com.apollographql.apollo.ApolloClient
 import com.sunday.pokemontest.GetPokemonDetailQuery
 import com.sunday.pokemontest.SearchPokemonSpeciesQuery
+import com.sunday.pokemontest.common.extension.toPokemonImageUrl
 import com.sunday.pokemontest.data.Pokemon
 import com.sunday.pokemontest.data.PokemonSpecies
 import javax.inject.Inject
@@ -57,6 +58,7 @@ class PokemonRepository @Inject constructor(
             name = name,
             captureRate = capture_rate,
             colorName = pokemon_v2_pokemoncolor?.name ?: "blue",
+            imageUrl = id.toPokemonImageUrl(),
             pokemons = pokemon_v2_pokemons.map { it.toDomainSearch() }
         )
 
@@ -64,6 +66,7 @@ class PokemonRepository @Inject constructor(
         Pokemon(
             id = id,
             name = name,
+            imageUrl = id.toPokemonImageUrl(),
             abilities = pokemon_v2_pokemonabilities.mapNotNull {
                 it.pokemon_v2_ability?.name
             }
@@ -75,6 +78,7 @@ class PokemonRepository @Inject constructor(
             name = name,
             captureRate = capture_rate,
             colorName = pokemon_v2_pokemoncolor?.name ?: "blue",
+            imageUrl = id.toPokemonImageUrl(),
             pokemons = pokemon_v2_pokemons.map { it.toDomainDetail() }
         )
 
@@ -82,6 +86,7 @@ class PokemonRepository @Inject constructor(
         Pokemon(
             id = id,
             name = name,
+            imageUrl = id.toPokemonImageUrl(),
             abilities = pokemon_v2_pokemonabilities.mapNotNull {
                 it.pokemon_v2_ability?.name
             }

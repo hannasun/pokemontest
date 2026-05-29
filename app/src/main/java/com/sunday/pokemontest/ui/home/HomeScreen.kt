@@ -186,6 +186,7 @@ private fun LoadingIndicator(modifier: Modifier = Modifier) {
 private fun SpeciesCard(species: PokemonSpecies, onClick: () -> Unit) {
     val bgColor = pokemonColorToCompose(species.colorName)
     PokemonItemCard(
+        imageUrl = species.imageUrl,
         title = species.name,
         subtitle = stringResource(R.string.home_list_item_pokmons_in_species),
         bgColor = bgColor,
