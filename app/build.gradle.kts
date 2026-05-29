@@ -76,7 +76,10 @@ dependencies {
     implementation(libs.paging.runtime)
     implementation(libs.paging.compose)
     implementation(libs.androidx.appcompat)
-
+    implementation(libs.coil.compose)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
     //Unit test
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
