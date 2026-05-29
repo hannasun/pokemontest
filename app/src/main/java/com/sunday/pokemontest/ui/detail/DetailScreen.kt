@@ -30,7 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.pokemon.app.ui.component.PokemonCircularProgressIndicator
+import com.sunday.pokemontest.ui.component.PokemonCircularProgressIndicator
 import com.sunday.pokemontest.R
 import com.sunday.pokemontest.data.PokemonSpecies
 import com.sunday.pokemontest.ui.component.PokemonItemCard

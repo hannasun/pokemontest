@@ -1,4 +1,4 @@
-package com.pokemon.app.ui.component
+package com.sunday.pokemontest.ui.component
 
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
