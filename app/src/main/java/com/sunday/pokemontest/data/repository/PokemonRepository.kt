@@ -1,6 +1,8 @@
 package com.sunday.pokemontest.data.repository
 
 import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo.cache.normalized.FetchPolicy
+import com.apollographql.apollo.cache.normalized.fetchPolicy
 import com.sunday.pokemontest.GetPokemonDetailQuery
 import com.sunday.pokemontest.SearchPokemonSpeciesQuery
 import com.sunday.pokemontest.domain.model.PokemonSpecies
@@ -26,6 +28,7 @@ class PokemonRepository @Inject constructor(
                     offset = offset
                 )
             )
+            .fetchPolicy(FetchPolicy.NetworkFirst)
             .execute()
 
         if (response.hasErrors()) {
@@ -41,6 +44,7 @@ class PokemonRepository @Inject constructor(
     suspend fun getSpeciesDetail(id: Int): Result<PokemonSpecies?> = runCatching {
         val response = apolloClient
             .query(GetPokemonDetailQuery(id = id))
+            .fetchPolicy(FetchPolicy.NetworkFirst)
             .execute()
 
         if (response.hasErrors()) {

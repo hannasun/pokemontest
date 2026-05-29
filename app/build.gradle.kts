@@ -72,7 +72,6 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.navigation.compose)
-    implementation(libs.apollo.runtime)
     implementation(libs.paging.runtime)
     implementation(libs.paging.compose)
     implementation(libs.androidx.appcompat)
@@ -80,6 +79,9 @@ dependencies {
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
+    implementation(libs.apollo.runtime)
+    implementation(libs.apollo.normalized.cache)
+    implementation(libs.apollo.normalized.cache.sqlite)
     //Unit test
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
