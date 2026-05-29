@@ -54,7 +54,7 @@ fun PokemonItemCard(
                     modifier = Modifier.weight(1f)
                 )
                 Spacer(Modifier.width(8.dp))
-                if (!captureRate.isEmpty()) {
+                if (captureRate.isNotBlank()) {
                     Text(
                         text = "Capture Rate: $captureRate",
                         fontSize = 14.sp,
