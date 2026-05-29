@@ -3,7 +3,7 @@ package com.sunday.pokemontest.ui.detail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sunday.pokemontest.data.PokemonSpecies
+import com.sunday.pokemontest.domain.model.PokemonSpecies
 import com.sunday.pokemontest.data.repository.PokemonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

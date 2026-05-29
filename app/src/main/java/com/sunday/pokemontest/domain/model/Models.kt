@@ -1,4 +1,4 @@
-package com.sunday.pokemontest.data
+package com.sunday.pokemontest.domain.model
 
 data class PokemonSpecies(
     val id: Int,

@@ -6,7 +6,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.sunday.pokemontest.data.PokemonSpecies
+import com.sunday.pokemontest.domain.model.PokemonSpecies
 import com.sunday.pokemontest.data.paging.PokemonPageSource
 import com.sunday.pokemontest.data.repository.PokemonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

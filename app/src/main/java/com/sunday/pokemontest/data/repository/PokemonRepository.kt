@@ -3,9 +3,8 @@ package com.sunday.pokemontest.data.repository
 import com.apollographql.apollo.ApolloClient
 import com.sunday.pokemontest.GetPokemonDetailQuery
 import com.sunday.pokemontest.SearchPokemonSpeciesQuery
-import com.sunday.pokemontest.common.extension.toPokemonImageUrl
-import com.sunday.pokemontest.data.Pokemon
-import com.sunday.pokemontest.data.PokemonSpecies
+import com.sunday.pokemontest.domain.model.PokemonSpecies
+import com.sunday.pokemontest.domain.mapper.toDomain
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -47,48 +46,6 @@ class PokemonRepository @Inject constructor(
         if (response.hasErrors()) {
             throw Exception(response.errors?.firstOrNull()?.message ?: "GraphQL error")
         }
-
         response.dataOrThrow().pokemon_v2_pokemonspecies_by_pk?.toDomain()
     }
-
-    // graphql data class to model
-    private fun SearchPokemonSpeciesQuery.Pokemon_v2_pokemonspecy.toDomain() =
-        PokemonSpecies(
-            id = id,
-            name = name,
-            captureRate = capture_rate,
-            colorName = pokemon_v2_pokemoncolor?.name ?: "blue",
-            imageUrl = id.toPokemonImageUrl(),
-            pokemons = pokemon_v2_pokemons.map { it.toDomainSearch() }
-        )
-
-    private fun SearchPokemonSpeciesQuery.Pokemon_v2_pokemon.toDomainSearch() =
-        Pokemon(
-            id = id,
-            name = name,
-            imageUrl = id.toPokemonImageUrl(),
-            abilities = pokemon_v2_pokemonabilities.mapNotNull {
-                it.pokemon_v2_ability?.name
-            }
-        )
-
-    private fun GetPokemonDetailQuery.Pokemon_v2_pokemonspecies_by_pk.toDomain() =
-        PokemonSpecies(
-            id = id,
-            name = name,
-            captureRate = capture_rate,
-            colorName = pokemon_v2_pokemoncolor?.name ?: "blue",
-            imageUrl = id.toPokemonImageUrl(),
-            pokemons = pokemon_v2_pokemons.map { it.toDomainDetail() }
-        )
-
-    private fun GetPokemonDetailQuery.Pokemon_v2_pokemon.toDomainDetail() =
-        Pokemon(
-            id = id,
-            name = name,
-            imageUrl = id.toPokemonImageUrl(),
-            abilities = pokemon_v2_pokemonabilities.mapNotNull {
-                it.pokemon_v2_ability?.name
-            }
-        )
 }

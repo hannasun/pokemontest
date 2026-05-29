@@ -3,7 +3,7 @@ package com.sunday.pokemontest.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.sunday.pokemontest.TestData
-import com.sunday.pokemontest.data.PokemonSpecies
+import com.sunday.pokemontest.domain.model.PokemonSpecies
 import com.sunday.pokemontest.data.repository.PokemonRepository
 import io.mockk.coEvery
 import io.mockk.every

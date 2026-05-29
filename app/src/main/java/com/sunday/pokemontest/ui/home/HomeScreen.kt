@@ -40,7 +40,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import com.sunday.pokemontest.ui.component.PokemonCircularProgressIndicator
 import com.sunday.pokemontest.R
-import com.sunday.pokemontest.data.PokemonSpecies
+import com.sunday.pokemontest.domain.model.PokemonSpecies
 import com.sunday.pokemontest.ui.component.PokemonItemCard
 import com.sunday.pokemontest.ui.component.PokemonLoadingErrorText
 import com.sunday.pokemontest.ui.theme.PokemonBlue

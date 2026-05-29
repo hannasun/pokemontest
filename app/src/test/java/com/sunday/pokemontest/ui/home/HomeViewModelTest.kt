@@ -3,7 +3,7 @@ package com.sunday.pokemontest.ui.home
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import app.cash.turbine.test
 import com.sunday.pokemontest.TestData
-import com.sunday.pokemontest.data.PokemonSpecies
+import com.sunday.pokemontest.domain.model.PokemonSpecies
 import com.sunday.pokemontest.data.repository.PokemonRepository
 import io.mockk.coEvery
 import io.mockk.mockk
