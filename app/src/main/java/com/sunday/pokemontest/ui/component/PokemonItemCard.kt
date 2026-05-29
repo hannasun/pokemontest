@@ -31,14 +31,15 @@ import com.sunday.pokemontest.ui.theme.PokemonBlue
 @Composable
 fun PokemonItemCard(
     title: String,
-    subtitle:String,
+    subtitle: String,
     captureRate: String,
     data: List<String>,
     bgColor: Color,
-    onClick: () -> Unit
+    onClick: (() -> Unit)? = null
 ) {
     Card(
-        modifier = Modifier
+        modifier = if (onClick == null) Modifier.fillMaxWidth()
+        else Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(16.dp),

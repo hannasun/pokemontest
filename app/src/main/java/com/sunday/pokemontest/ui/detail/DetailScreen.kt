@@ -147,9 +147,7 @@ fun SpeciesDetail(species: PokemonSpecies) {
                     bgColor = pokemonColorToCompose(species.colorName),
                     captureRate = "",
                     data = pokemon.abilities
-                ) {
-
-                }
+                )
             }
         }
     }
