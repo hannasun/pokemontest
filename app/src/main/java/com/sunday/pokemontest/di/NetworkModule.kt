@@ -2,7 +2,9 @@ package com.sunday.pokemontest.di
 
 import android.content.Context
 import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo.cache.normalized.FetchPolicy
 import com.apollographql.apollo.cache.normalized.api.MemoryCacheFactory
+import com.apollographql.apollo.cache.normalized.fetchPolicy
 import com.apollographql.apollo.cache.normalized.normalizedCache
 import com.apollographql.apollo.cache.normalized.sql.SqlNormalizedCacheFactory
 import com.apollographql.apollo.network.okHttpClient
@@ -55,6 +57,7 @@ object NetworkModule {
             .serverUrl("https://beta.pokeapi.co/graphql/v1beta")
             .okHttpClient(okHttpClient)
             .normalizedCache(memoryCacheFactory.chain(sqlCacheFactory))
+            .fetchPolicy(FetchPolicy.NetworkFirst)
             .build()
     }
 }
