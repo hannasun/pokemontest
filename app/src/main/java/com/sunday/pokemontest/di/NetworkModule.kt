@@ -2,12 +2,12 @@ package com.sunday.pokemontest.di
 
 import android.content.Context
 import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.cache.normalized.FetchPolicy
-import com.apollographql.apollo.cache.normalized.api.MemoryCacheFactory
-import com.apollographql.apollo.cache.normalized.fetchPolicy
-import com.apollographql.apollo.cache.normalized.normalizedCache
-import com.apollographql.apollo.cache.normalized.sql.SqlNormalizedCacheFactory
+import com.apollographql.cache.normalized.FetchPolicy
+import com.apollographql.cache.normalized.fetchPolicy
+import com.apollographql.cache.normalized.memory.MemoryCacheFactory
+import com.apollographql.cache.normalized.sql.SqlNormalizedCacheFactory
 import com.apollographql.apollo.network.okHttpClient
+import com.sunday.pokemontest.cache.Cache.cache
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -56,7 +56,7 @@ object NetworkModule {
         return ApolloClient.Builder()
             .serverUrl("https://beta.pokeapi.co/graphql/v1beta")
             .okHttpClient(okHttpClient)
-            .normalizedCache(memoryCacheFactory.chain(sqlCacheFactory))
+            .cache(memoryCacheFactory.chain(sqlCacheFactory))
             .fetchPolicy(FetchPolicy.NetworkFirst)
             .build()
     }

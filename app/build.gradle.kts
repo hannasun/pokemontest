@@ -7,12 +7,6 @@ plugins {
     alias(libs.plugins.apollo)
 }
 
-configurations.all {
-    resolutionStrategy {
-        force("org.jetbrains.kotlin:kotlin-stdlib:2.0.21")
-    }
-}
-
 android {
     namespace = "com.sunday.pokemontest"
     compileSdk {
@@ -56,6 +50,8 @@ apollo {
             endpointUrl.set("https://beta.pokeapi.co/graphql/v1beta")
             schemaFile.set(file("src/main/graphql/schema.graphqls"))
         }
+        plugin("com.apollographql.cache:normalized-cache-apollo-compiler-plugin:${libs.versions.apolloCache.get()}")
+        pluginArgument("com.apollographql.cache.packageName", packageName.get())
     }
 }
 
