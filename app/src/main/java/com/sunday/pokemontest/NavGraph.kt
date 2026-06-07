@@ -8,10 +8,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.sunday.pokemontest.ui.detail.DetailScreen
 import com.sunday.pokemontest.ui.home.HomeScreen
-import com.sunday.pokemontest.ui.splash.SplashScreen
 
 private object Routes {
-    const val SPLASH = "splash"
     const val HOME = "home"
     const val DETAIL = "detail/{speciesId}"
     fun detail(id: Int) = "detail/$id"
@@ -20,14 +18,7 @@ private object Routes {
 @Composable
 fun PokemonNavGraph() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Routes.SPLASH) {
-        composable(Routes.SPLASH) {
-            SplashScreen {
-                navController.navigate(Routes.HOME) {
-                    popUpTo(Routes.SPLASH) { inclusive = true }
-                }
-            }
-        }
+    NavHost(navController = navController, startDestination = Routes.HOME) {
         composable(Routes.HOME) {
             HomeScreen(onSpeciesClicked = { id ->
                 navController.navigate(Routes.detail(id))

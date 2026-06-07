@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="pokemon_blue">#3B5BA8</color>
+    <color name="pokemon_yellow">#FFCB05</color>
 </resources>

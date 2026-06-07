@@ -12,18 +12,31 @@ import com.sunday.pokemontest.data.repository.PokemonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val repository: PokemonRepository
 ) : ViewModel() {
+    private val _isLoading = MutableStateFlow(true)
+    val isLoading: StateFlow<Boolean> = _isLoading
+
+    init {
+        viewModelScope.launch {
+            // Safety timeout: if loading takes more than 3 seconds, hide the splash screen anyway
+            delay(3000)
+            _isLoading.value = false
+        }
+    }
+
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: StateFlow<String> = _searchQuery
 
@@ -46,5 +59,9 @@ class HomeViewModel @Inject constructor(
 
     fun onQueryChange(query: String) {
         _searchQuery.value = query
+    }
+
+    fun onLoadingFinished() {
+        _isLoading.value = false
     }
 }

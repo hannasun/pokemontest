@@ -22,6 +22,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -34,6 +35,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.LocalActivity
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -50,11 +53,21 @@ import com.sunday.pokemontest.ui.theme.pokemonColorToCompose
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = hiltViewModel(), onSpeciesClicked: (Int) -> Unit
+    viewModel: HomeViewModel = hiltViewModel(LocalActivity.current as ComponentActivity),
+    onSpeciesClicked: (Int) -> Unit
 ) {
     val query by viewModel.searchQuery.collectAsState()
     val lazyItems = viewModel.pokemonSpecies.collectAsLazyPagingItems()
     val keyboard = LocalSoftwareKeyboardController.current
+
+    LaunchedEffect(lazyItems.loadState.refresh) {
+        // Dismiss splash screen if we have finished loading or encountered an error
+        if (lazyItems.loadState.refresh is LoadState.NotLoading ||
+            lazyItems.loadState.refresh is LoadState.Error
+        ) {
+            viewModel.onLoadingFinished()
+        }
+    }
 
     Scaffold(
         topBar = {

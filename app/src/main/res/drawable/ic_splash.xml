@@ -1,0 +1,43 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background Outer Circle (Black) -->
+    <path
+        android:fillColor="@color/black"
+        android:pathData="M54,18c19.88,0 36,16.12 36,36s-16.12,36 -36,36s-36,-16.12 -36,-36s16.12,-36 36,-36z" />
+
+    <!-- Top Half (Yellow) -->
+    <path
+        android:fillColor="@color/pokemon_yellow"
+        android:pathData="M54,22c-15.54,0 -28.43,11.08 -31.47,26h62.94c-3.04,-14.92 -15.93,-26 -31.47,-26z" />
+
+    <!-- Bottom Half (Blue) -->
+    <path
+        android:fillColor="@color/pokemon_blue"
+        android:pathData="M22.53,60c3.04,14.92 15.93,26 31.47,26s28.43,-11.08 31.47,-26h-62.94z" />
+
+    <!-- Horizontal Center Line (Black) -->
+    <path
+        android:fillColor="@color/black"
+        android:pathData="M18,52h72v4h-72z" />
+
+    <!-- Center Button Outer (Black) -->
+    <path
+        android:fillColor="@color/black"
+        android:pathData="M54,42c6.63,0 12,5.37 12,12s-5.37,12 -12,12s-12,-5.37 -12,-12s5.37,-12 12,-12z" />
+
+    <!-- Center Button Inner (White) -->
+    <path
+        android:fillColor="@color/white"
+        android:pathData="M54,46c4.42,0 8,3.58 8,8s-3.58,8 -8,8s-8,-3.58 -8,-8s3.58,-8 8,-8z" />
+
+    <!-- Center Button Smallest (Black Ring) -->
+    <path
+        android:strokeWidth="1"
+        android:strokeColor="@color/black"
+        android:pathData="M54,50c2.21,0 4,1.79 4,4s-1.79,4 -4,4s-4,-1.79 -4,-4s1.79,-4 4,-4z" />
+
+</vector>

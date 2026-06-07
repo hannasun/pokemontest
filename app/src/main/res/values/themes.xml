@@ -5,4 +5,10 @@
         <item name="android:navigationBarColor">@color/pokemon_blue</item>
         <item name="android:windowBackground">@color/pokemon_blue</item>
     </style>
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/pokemon_blue</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.PokemonTest</item>
+    </style>
 </resources>
